@@ -90,6 +90,21 @@ const RecruiterPage = () => {
               <p className="text-muted-foreground max-w-2xl mx-auto">
                 n8n Expert • SaaS Builder • Social Media Automation
               </p>
+
+              {/* CV Download */}
+              <div className="mt-8 flex flex-col sm:flex-row gap-3 justify-center">
+                <a href="/Muhammad-Nouman-CV.pdf" download>
+                  <Button variant="hero" size="lg">
+                    <Download className="w-4 h-4" />
+                    Download CV (PDF)
+                  </Button>
+                </a>
+                <a href="#contact-section">
+                  <Button variant="heroOutline" size="lg">
+                    Contact Now
+                  </Button>
+                </a>
+              </div>
             </div>
 
             {/* Quick Info Cards */}
