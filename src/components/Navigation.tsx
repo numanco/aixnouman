@@ -63,8 +63,16 @@ const Navigation = () => {
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center gap-8">
-            {isHomePage &&
-              navLinks.map((link) => (
+            {navLinks.map((link) =>
+              (link as any).isRoute ? (
+                <Link
+                  key={link.href}
+                  to={link.href}
+                  className="text-muted-foreground hover:text-foreground transition-colors duration-200 text-sm font-medium"
+                >
+                  {link.label}
+                </Link>
+              ) : isHomePage ? (
                 <a
                   key={link.href}
                   href={link.href}
@@ -72,7 +80,8 @@ const Navigation = () => {
                 >
                   {link.label}
                 </a>
-              ))}
+              ) : null
+            )}
             <button
               onClick={toggleTheme}
               className="p-2 rounded-lg text-muted-foreground hover:text-foreground hover:bg-secondary transition-colors"
