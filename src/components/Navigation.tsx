@@ -85,11 +85,6 @@ const Navigation = () => {
                     {link.label}
                   </a>
                 ))}
-              <Link to="/recruiter" onClick={() => setIsMobileMenuOpen(false)}>
-                <Button variant="outline" className="w-full">
-                  For Recruiters
-                </Button>
-              </Link>
               <a href="#contact" onClick={() => setIsMobileMenuOpen(false)}>
                 <Button variant="hero" className="w-full">
                   Hire Me
