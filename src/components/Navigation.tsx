@@ -72,6 +72,13 @@ const Navigation = () => {
                   {link.label}
                 </a>
               ))}
+            <button
+              onClick={toggleTheme}
+              className="p-2 rounded-lg text-muted-foreground hover:text-foreground hover:bg-secondary transition-colors"
+              aria-label="Toggle theme"
+            >
+              {isDark ? <Sun size={18} /> : <Moon size={18} />}
+            </button>
             <a href="#contact">
               <Button variant="hero" size="sm">
                 Hire Me
