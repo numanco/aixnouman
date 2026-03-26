@@ -110,6 +110,13 @@ const Navigation = () => {
                     {link.label}
                   </a>
                 ))}
+              <button
+                onClick={toggleTheme}
+                className="flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors py-2"
+              >
+                {isDark ? <Sun size={18} /> : <Moon size={18} />}
+                {isDark ? "Light Mode" : "Dark Mode"}
+              </button>
               <a href="#contact" onClick={() => setIsMobileMenuOpen(false)}>
                 <Button variant="hero" className="w-full">
                   Hire Me
