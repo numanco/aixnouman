@@ -1,12 +1,30 @@
 import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { Menu, X } from "lucide-react";
+import { Menu, X, Sun, Moon } from "lucide-react";
 
 const Navigation = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isDark, setIsDark] = useState(() => {
+    if (typeof window !== "undefined") {
+      return document.documentElement.classList.contains("dark");
+    }
+    return true;
+  });
   const location = useLocation();
+
+  const toggleTheme = () => {
+    const html = document.documentElement;
+    if (isDark) {
+      html.classList.remove("dark");
+      html.classList.add("light");
+    } else {
+      html.classList.remove("light");
+      html.classList.add("dark");
+    }
+    setIsDark(!isDark);
+  };
 
   useEffect(() => {
     const handleScroll = () => {
@@ -54,11 +72,13 @@ const Navigation = () => {
                   {link.label}
                 </a>
               ))}
-            <Link to="/recruiter">
-              <Button variant="outline" size="sm">
-                For Recruiters
-              </Button>
-            </Link>
+            <button
+              onClick={toggleTheme}
+              className="p-2 rounded-lg text-muted-foreground hover:text-foreground hover:bg-secondary transition-colors"
+              aria-label="Toggle theme"
+            >
+              {isDark ? <Sun size={18} /> : <Moon size={18} />}
+            </button>
             <a href="#contact">
               <Button variant="hero" size="sm">
                 Hire Me
@@ -90,11 +110,13 @@ const Navigation = () => {
                     {link.label}
                   </a>
                 ))}
-              <Link to="/recruiter" onClick={() => setIsMobileMenuOpen(false)}>
-                <Button variant="outline" className="w-full">
-                  For Recruiters
-                </Button>
-              </Link>
+              <button
+                onClick={toggleTheme}
+                className="flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors py-2"
+              >
+                {isDark ? <Sun size={18} /> : <Moon size={18} />}
+                {isDark ? "Light Mode" : "Dark Mode"}
+              </button>
               <a href="#contact" onClick={() => setIsMobileMenuOpen(false)}>
                 <Button variant="hero" className="w-full">
                   Hire Me
