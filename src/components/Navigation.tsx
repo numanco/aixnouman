@@ -54,11 +54,6 @@ const Navigation = () => {
                   {link.label}
                 </a>
               ))}
-            <Link to="/recruiter">
-              <Button variant="outline" size="sm">
-                For Recruiters
-              </Button>
-            </Link>
             <a href="#contact">
               <Button variant="hero" size="sm">
                 Hire Me
