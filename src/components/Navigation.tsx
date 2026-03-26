@@ -38,6 +38,7 @@ const Navigation = () => {
     { href: "#about", label: "About" },
     { href: "#skills", label: "Skills" },
     { href: "#projects", label: "Projects" },
+    { href: "/store", label: "Store", isRoute: true },
     { href: "#contact", label: "Contact" },
   ];
 
@@ -62,8 +63,16 @@ const Navigation = () => {
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center gap-8">
-            {isHomePage &&
-              navLinks.map((link) => (
+            {navLinks.map((link) =>
+              (link as any).isRoute ? (
+                <Link
+                  key={link.href}
+                  to={link.href}
+                  className="text-muted-foreground hover:text-foreground transition-colors duration-200 text-sm font-medium"
+                >
+                  {link.label}
+                </Link>
+              ) : isHomePage ? (
                 <a
                   key={link.href}
                   href={link.href}
@@ -71,7 +80,8 @@ const Navigation = () => {
                 >
                   {link.label}
                 </a>
-              ))}
+              ) : null
+            )}
             <button
               onClick={toggleTheme}
               className="p-2 rounded-lg text-muted-foreground hover:text-foreground hover:bg-secondary transition-colors"
@@ -99,8 +109,17 @@ const Navigation = () => {
         {isMobileMenuOpen && (
           <div className="md:hidden py-4 border-t border-border/50 animate-fade-in">
             <div className="flex flex-col gap-4">
-              {isHomePage &&
-                navLinks.map((link) => (
+              {navLinks.map((link) =>
+                (link as any).isRoute ? (
+                  <Link
+                    key={link.href}
+                    to={link.href}
+                    className="text-muted-foreground hover:text-foreground transition-colors duration-200 py-2"
+                    onClick={() => setIsMobileMenuOpen(false)}
+                  >
+                    {link.label}
+                  </Link>
+                ) : isHomePage ? (
                   <a
                     key={link.href}
                     href={link.href}
@@ -109,7 +128,8 @@ const Navigation = () => {
                   >
                     {link.label}
                   </a>
-                ))}
+                ) : null
+              )}
               <button
                 onClick={toggleTheme}
                 className="flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors py-2"
